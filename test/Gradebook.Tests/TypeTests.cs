@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Gradebook.Tests
@@ -6,6 +7,41 @@ namespace Gradebook.Tests
     public class TypeTests
     {
 
+        [Fact]
+        public void CSharpCanPassByRef()
+        {
+            var book1 = GetBook("Book 1");
+            GetBookSetName(ref book1, "New Name");
+            
+            Assert.Equal("New Name", book1.Name);
+
+        }
+
+        private void GetBookSetName(ref Book book, string name)
+        {
+            book = new GradeBook.Book(name);
+
+        }
+
+        [Fact]
+        public void CSharpIsPassByValue()
+        {
+            var book1 = GetBook("Book 1");
+            GetBookSetName(book1, "New Name");
+            
+            Assert.Equal("Book1", book1.Name);
+
+        }
+
+        private void GetBookSetName(Book book, string name)
+        {
+            book = new Book(name);
+
+        }
+
+
+
+        [Fact]
         public void CanSetNameFromReference()
         {
             var book1 = GetBook("Book 1");
