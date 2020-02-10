@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using Xunit;
 
 namespace Gradebook.Tests
@@ -74,6 +75,24 @@ namespace Gradebook.Tests
         private void SetName(Book book, string name)
         {
             book.Name = name;
+        }
+
+        [Fact]
+        public void StringsBehaveLikeValueTypes()
+        {
+            string name = "Scott";
+            var upper = MakeUppercase(name);
+
+            Assert.Equal("Scott", name);
+            Assert.Equal("SCOTT", upper);
+
+
+        }
+
+        public string MakeUppercase(string name)
+        {
+            return Parameter.ToUpper();
+
         }
 
         [Fact]
