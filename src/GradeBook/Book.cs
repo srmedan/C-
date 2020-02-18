@@ -12,6 +12,19 @@ namespace GradeBook
             Name = name;
             
         }
+
+        public void AddLetterGrade(char letter)
+        {
+            if(letter == 'A')
+            {
+                AddGrade(90);
+            }
+            else if(letter == 'B')
+            {
+                
+            }
+        }
+
         public void AddGrade(double grade)
         {
             if (grade <= 100 && grade >=0)
@@ -39,6 +52,12 @@ namespace GradeBook
 
             for(var index = 0; index < grades.Count; index += 1)
             {
+
+                if(grades[index] == 42.1)
+                {
+                    continue;
+                }
+
                 result.Low = Math.Min(grades[index], result.Low);
                 result.High = Math.Max(grades[index], result.High);
                 result.Average += grades[index];
